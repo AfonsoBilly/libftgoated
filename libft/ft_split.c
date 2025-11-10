@@ -6,13 +6,13 @@
 /*   By: adiogo-f <adiogo-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 18:58:18 by adiogo-f          #+#    #+#             */
-/*   Updated: 2025/11/04 18:58:20 by adiogo-f         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:10:35 by adiogo-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int	count_words(const char *s, char c)
+static int	count_words(const char *s, char c)
 {
 	int	count;
 
@@ -29,19 +29,19 @@ static	int	count_words(const char *s, char c)
 	return (count);
 }
 
-static	char	*word_copy(const char *s, char c)
+static char	*word_copy(const char *s, char c)
 {
 	char	*w;
 	int		len;
 	int		i;
 
 	len = 0;
+	i = 0;
 	while (s[len] && s[len] != c)
 		len++;
 	w = malloc(len + 1);
 	if (!w)
 		return (NULL);
-	i = 0;
 	while (i < len)
 	{
 		w[i] = s[i];
@@ -51,24 +51,40 @@ static	char	*word_copy(const char *s, char c)
 	return (w);
 }
 
-char	**ft_split(char const *s, char c)
+static void	free_split(char **res, int count)
+{
+	int	i;
+
+	i = 0;
+	while (i < count)
+	{
+		free(res[i]);
+		i++;
+	}
+	free(res);
+}
+
+char	**ft_split(const char *s, char c)
 {
 	char	**res;
 	int		i;
 
+	i = 0;
 	if (!s)
 		return (NULL);
 	res = malloc(sizeof(char *) * (count_words(s, c) + 1));
 	if (!res)
 		return (NULL);
-	i = 0;
 	while (*s)
 	{
 		while (*s && *s == c)
 			s++;
 		if (*s)
 		{
-			res[i++] = word_copy(s, c);
+			res[i] = word_copy(s, c);
+			if (!res[i])
+				return (free_split(res, i), NULL);
+			i++;
 			while (*s && *s != c)
 				s++;
 		}
@@ -76,3 +92,21 @@ char	**ft_split(char const *s, char c)
 	res[i] = NULL;
 	return (res);
 }
+
+/* int	main(void)
+{
+	char	**result;
+	int		i;
+
+	result = ft_split("hello world 42", ' ');
+	
+	i = 0;
+	while (result[i])
+	{
+		printf("%s\n", result[i]);
+		free(result[i]);
+		i++;
+	}
+	free(result);
+	return (0);
+} */

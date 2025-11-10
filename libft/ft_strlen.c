@@ -6,7 +6,7 @@
 /*   By: adiogo-f <adiogo-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 19:30:17 by adiogo-f          #+#    #+#             */
-/*   Updated: 2025/11/04 18:54:54 by adiogo-f         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:04:22 by adiogo-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlen(const char *s)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (s[i])
