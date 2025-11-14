@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adiogo-f <adiogo-f@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 15:31:07 by adiogo-f          #+#    #+#             */
-/*   Updated: 2025/11/04 17:16:50 by adiogo-f         ###   ########.fr       */
+/*   Created: 2025/10/28 18:24:08 by marvin            #+#    #+#             */
+/*   Updated: 2025/10/28 18:24:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,23 @@
 
 int	ft_atoi(const char *str)
 {
-	int		i;
+    int		i;
 	int		sign;
 	long	result;
 
-	i = 0;
-	sign = 1;
-	result = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = (result * 10) + (str[i] - '0');
-		i++;
-	}
-	return ((int)(result * sign));
+    i = 0;
+    while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+        i++;
+    if (str[i] == '-' || str[i] == '+')
+    {
+        if (str[i] == '-')
+            sign = -1;
+        i++;
+    }
+    while (str[i] >= '0' && str[i] <= '9')
+    {
+        result = (result * 10) + (str[i] - '0');
+        i++;
+    }
+    return ((int)(result * sign));
 }
