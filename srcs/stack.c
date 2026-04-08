@@ -41,6 +41,8 @@ int	is_sorted(t_stack *a)
 {
 	int	i;
 
+	if (a->size <= 1)
+		return (1);
 	i = 0;
 	while (i < a->size - 1)
 	{
