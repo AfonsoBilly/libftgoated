@@ -15,7 +15,6 @@
 char	*ft_strdup(const char *s)
 {
 	size_t	i;
-	size_t	j;
 	char	*cpstr;
 
 	i = 0;
